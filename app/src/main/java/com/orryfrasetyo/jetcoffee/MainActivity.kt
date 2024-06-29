@@ -26,6 +26,7 @@ import com.orryfrasetyo.jetcoffee.model.dummyBestSellerMenu
 import com.orryfrasetyo.jetcoffee.model.dummyCategory
 import com.orryfrasetyo.jetcoffee.model.dummyMenu
 import com.orryfrasetyo.jetcoffee.ui.components.CategoryItem
+import com.orryfrasetyo.jetcoffee.ui.components.HomeSection
 import com.orryfrasetyo.jetcoffee.ui.components.MenuItem
 import com.orryfrasetyo.jetcoffee.ui.components.Search
 import com.orryfrasetyo.jetcoffee.ui.components.SectionText
@@ -46,12 +47,18 @@ class MainActivity : ComponentActivity() {
 fun JetCoffeeApp() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(stringResource(R.string.section_category))
-        CategoryRow()
-        SectionText(stringResource(R.string.section_favorite_menu))
-        MenuRow(dummyMenu)
-        SectionText(stringResource(R.string.section_best_seller_menu))
-        MenuRow(dummyBestSellerMenu)
+        HomeSection(
+            title = stringResource(R.string.section_category),
+            content = { CategoryRow() }
+        )
+        HomeSection(
+            title = stringResource(R.string.menu_favorite),
+            content = { MenuRow(dummyMenu)}
+        )
+        HomeSection(
+            title = stringResource(R.string.section_best_seller_menu),
+            content = { MenuRow(dummyBestSellerMenu)}
+        )
     }
 }
 
